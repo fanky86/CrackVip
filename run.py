@@ -310,22 +310,29 @@ def ubah_bahasa(cookie):
                 post = ses.post("https://mbasic.facebook.com"+x["action"],data=data,cookies={"cookie": cookie})
     except:
         pass
+###----------[ CEK INFO LOGIN ]---------- ###
+def cek_login(cookie):
+    try:
+        url = ses.get("https://mbasic.facebook.com/profile.php",cookies=cookie).text
+        nama = re.findall("<title>(.*?)</title>",url)[0]
+        if "Konten Tidak Ditemukan" in nama:
+            try:os.remove("data/cookie")
+            except:pass
+            login123()
+        else:
+            return nama
+    except ConnectionError:
+        prints(Panel(f"""{M2}koneksi internet kamu bermasalah, silahkan cek koneksi kamu kembali""",width=87,style=f"{color_panel}"))
+        exit()
 
 ###----------[ MENU UTAMA ]---------- ###
 def menu():
     os.system("clear")
     banner()
     try:
-        cok = open(".vipercok.txt","r").read()
+        cok = open("data/cookie","r").read()
         cookie = {"cookie": cok}
-        url = ses.get("https://mbasic.facebook.com/profile.php",cookies=cookie).text
-        nama = re.findall("<title>(.*?)</title>",url)[0]
-        if "Konten Tidak Ditemukan" in nama:
-            try:os.system("rm -rf .vipercok.txt")
-            except:pass
-            login123()
-        else:
-            return nama
+        nama = cek_login(cookie)
     except:
         os.system("rm -rf .vipercok.txt")
         logincoki()
