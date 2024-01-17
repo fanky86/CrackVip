@@ -353,10 +353,10 @@ def menu():
     
     HaHi = console.input(f" {H2}• {P2}pilih menu : ")
     ###------------[ logout ]------------###
-    if menu in["logout"]:
+    if HaHi in["logout"]:
         os.system("rm -rf .vipercok.txt")
         exit(prints(Panel(f"""{H2}berhasil menghapus cookie, silahkan ketik ulang python haki-fb.py""",width=60,style=f"{color_panel}")))
-    elif menu in["1","01"]:
+    elif HaHi in["1","01"]:
         prints(Panel(f"""{P2}     masukan id target, pastikan id target bersifat publik dan tidak private""",subtitle=f"{P2}ketik {H2}me{P2} untuk dump dari teman sendiri",width=87,style=f"{color_panel}"))
         user = console.input(f" {H2}• {P2}masukan id atau username : ")
         if user in["Me","me"]:
