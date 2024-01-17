@@ -343,6 +343,8 @@ def menu():
         try:os.remove(".vipercok.txt")
         except:pass
         Login().menu_login()
+    os.system("clear")
+    banner()
     negara = requests.get("http://ip-api.com/json/").json()["country"]
     ip = requests.get("http://ip-api.com/json/").json()["query"]
     dia.append(panel(f"{P2}Name   : {H2}{nama}\n{P2}IP     : {H2}{ip}",title=f"{P2}Bio Data",width=60,style=f"{color_panel}"))
