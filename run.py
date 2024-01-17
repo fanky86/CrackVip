@@ -73,6 +73,7 @@ CON = sol()
 wa = Console()
 prem = []
 dia = []
+free=[]
 console = Console()
 ses = requests.Session()
 ###----------[ GLOBAL NAMA ]---------- ###
@@ -293,17 +294,15 @@ def login():
         login123()
 
 def logincoki():
-    coooki = []
-    cook = console.input(f" {H2}• {P2}masukan cookie : ")
-    coooki.append(cook)
+    cookie = console.input(f" {H2}• {P2}masukan cookie : ")
     try:
-        url = ses.get("https://mbasic.facebook.com/",cookies={"cookie": coooki}).text
+        url = ses.get("https://mbasic.facebook.com/",cookies={"cookie": cookie}).text
         if "Apa yang Anda pikirkan sekarang" in url:
             pass
         else:
             for z in url.find_all("a",href=True):
                 if "Tidak, Terima Kasih" in z.text:
-                    get = ses.get("https://mbasic.facebook.com"+z["href"],cookies=coooki)
+                    get = ses.get("https://mbasic.facebook.com"+z["href"],cookies=cookie)
                     parsing = parser(get.text,"html.parser")
                     action = parsing.find("form",{"method":"post"})["action"]
                     data = {
@@ -311,10 +310,10 @@ def logincoki():
                         "jazoest":re.search('name="jazoest" value="(.*?)"', str(get.text)).group(1),
                         "submit": "OK, Gunakan Data"
                         }
-                    post = ses.post("https://mbasic.facebook.com"+action,data=data,cookies=coooki)
+                    post = ses.post("https://mbasic.facebook.com"+action,data=data,cookies=cookie)
                     break
-        open(".vipercok.txt","w").write(coooki)
-        login()
+        open(".vipercok.txt","w").write(cookie)
+        menu()
     except:
         prints(Panel(f"""{M2}cookie invalid, silahkan gunakan cookie lain yang masih baru atau fresh""",width=60,style=f"{color_panel}"))
         sys.exit()
@@ -730,4 +729,4 @@ if __name__ == "__main__":
         os.system("clear")
     except:
         pass
-    login()
+    menu()
