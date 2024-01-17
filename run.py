@@ -316,7 +316,7 @@ def cek_login(cookie):
         url = ses.get("https://mbasic.facebook.com/profile.php",cookies=cookie).text
         nama = re.findall("<title>(.*?)</title>",url)[0]
         if "Konten Tidak Ditemukan" in nama:
-            try:os.remove("data/cookie")
+            try:os.remove(".vipercok.txt")
             except:pass
             Login().menu_login()
         else:
@@ -327,13 +327,13 @@ def cek_login(cookie):
 
 ###----------[ MENU UTAMA ]---------- ###
 def menu():
-    os.system("clear")
     try:
-        cok = open("data/cookie","r").read()
+        cok = open(".vipercok.txt","r").read()
         cookie = {"cookie": cok}
         nama = cek_login(cookie)
     except:
-        os.system("rm -rf .vipercok.txt")
+        try:os.remove(".vipercok.txt")
+        except:pass
         Login().menu_login()
     negara = requests.get("http://ip-api.com/json/").json()["country"]
     ip = requests.get("http://ip-api.com/json/").json()["query"]
