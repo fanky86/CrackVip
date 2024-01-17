@@ -614,8 +614,10 @@ def passwrd():
                 else:
                     pass
                 
-                pool.submit(validate, idf, pwv)
-
+                if "validate" in method:
+                    pool.submit(validate, idf, pwv)
+                else:
+                    pool.submit(validate, idf, pwv)
         print("")
     Console().print(
         Panel(
