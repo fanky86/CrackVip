@@ -354,45 +354,49 @@ def menu():
     HaHi = console.input(f" {H2}• {P2}pilih menu : ")
     ###------------[ logout ]------------###
     if menu in["logout"]:
-        os.system("rm .vipercok.txt")
+        os.system("rm -rf .vipercok.txt")
         exit(prints(Panel(f"""{H2}berhasil menghapus cookie, silahkan ketik ulang python haki-fb.py""",width=60,style=f"{color_panel}")))
-    elif HaHi in ["1", "01"]:
+    elif menu in["1","01"]:
         prints(Panel(f"""{P2}     masukan id target, pastikan id target bersifat publik dan tidak private""",subtitle=f"{P2}ketik {H2}me{P2} untuk dump dari teman sendiri",width=87,style=f"{color_panel}"))
         user = console.input(f" {H2}• {P2}masukan id atau username : ")
         if user in["Me","me"]:
-            user = GetUser()
-        Dump_Publik(f"https://mbasic.facebook.com/{user}?v=friends")
+            user = Dump(cookie).GetUser()
+        Dump(cookie).Dump_Publik(f"https://mbasic.facebook.com/{user}?v=friends")
         setting()
+			
     else:
         console.print(f" {H2}• {P2}[bold red]Masukan Yang Bener Tolol!!! ")
+class Dump:
+	
+	###----------[ FUNCTION INIT ]---------- ###
+	def __init__(self,cookie):
+		self.cookie = cookie
+			
+	###----------[ GET USER SENDIRI ]---------- ###
+	def GetUser(self):
+		try:
+			url = ses.get("https://mbasic.facebook.com/profile.php",cookies=self.cookie).text
+			uid = re.findall('name="target" value="(.*?)"',url)[0]
+			return uid
+		except:
+			pass
 
-###----------[ GET USER SENDIRI ]---------- ###
-def GetUser():
-    cookie = open(".vipercok.txt","r").read()
-    try:
-        url = ses.get("https://mbasic.facebook.com/profile.php",cookies=cookie).text
-        uid = re.findall('name="target" value="(.*?)"',url)[0]
-        return uid
-    except:
-        pass
-
-###----------[ DUMP ID PUBLIK ]---------- ###
-def Dump_Publik(url):
-    cookie = open(".vipercok.txt","r").read()
-    try:
-        url = parser(ses.get(url,cookies=cookie).text,"html.parser")
-        for z in url.find_all("a",href=True):
-            if "fref" in z.get("href"):
-                if "/profile.php?id=" in z.get("href"):uid = "".join(bs4.re.findall("profile\.php\?id=(.*?)&",z.get("href")));nama = z.text
-                else:uid = "".join(bs4.re.findall("/(.*?)\?",z.get("href")));nama = z.text
-                if uid+"|"+nama in id:pass
-                else:id.append(uid+"|"+nama)
-                console.print(f" {H2}• {P2}sedang proses mengumpulkan id, berhasil mendapatkan {len(id)} id....", end="\r")
-        for x in url.find_all("a",href=True):
-            if "Lihat Teman Lain" in x.text:
-                Dump_Publik("https://mbasic.facebook.com/"+x.get("href"))
-    except:pass
-
+	###----------[ DUMP ID PUBLIK ]---------- ###
+	def Dump_Publik(self,url):
+		try:
+			url = parser(ses.get(url,cookies=self.cookie).text,"html.parser")
+			for z in url.find_all("a",href=True):
+				if "fref" in z.get("href"):
+					if "/profile.php?id=" in z.get("href"):uid = "".join(bs4.re.findall("profile\.php\?id=(.*?)&",z.get("href")));nama = z.text
+					else:uid = "".join(bs4.re.findall("/(.*?)\?",z.get("href")));nama = z.text
+					if uid+"|"+nama in id:pass
+					else:id.append(uid+"|"+nama)
+					console.print(f" {H2}• {P2}sedang proses mengumpulkan id, berhasil mendapatkan {len(id)} id....", end="\r")
+			for x in url.find_all("a",href=True):
+				if "Lihat Teman Lain" in x.text:
+					self.Dump_Publik("https://mbasic.facebook.com/"+x.get("href"))
+		except:pass
+          
 def cektahun(fx):
     if len(fx) == 15:
         if fx[:10] in ["1000000000"]:
