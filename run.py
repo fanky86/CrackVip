@@ -349,11 +349,11 @@ def menu():
     ip = requests.get("http://ip-api.com/json/").json()["query"]
     dia.append(panel(f"{P2}Name   : {H2}{nama}\n{P2}IP     : {H2}{ip}",title=f"{P2}Bio Data",width=60,style=f"{color_panel}"))
     console.print(Columns(dia))
-    prints(Panel(f"{P2}[{color_text}01{P2}]. crack dari id publik\n{P2}[{color_text}01{P2}]. Logout",width=60,style=f"{color_panel}"))
+    prints(Panel(f"{P2}[{color_text}01{P2}]. crack dari id publik\n{P2}[{color_text}02{P2}]. Logout",width=60,style=f"{color_panel}"))
     
     HaHi = console.input(f" {H2}• {P2}pilih menu : ")
     ###------------[ logout ]------------###
-    if HaHi in["logout"]:
+    if HaHi in["2","02"]:
         os.system("rm -rf .vipercok.txt")
         exit(prints(Panel(f"""{H2}berhasil menghapus cookie, silahkan ketik ulang python haki-fb.py""",width=60,style=f"{color_panel}")))
     elif HaHi in["1","01"]:
@@ -390,7 +390,7 @@ class Dump:
 					else:uid = "".join(bs4.re.findall("/(.*?)\?",z.get("href")));nama = z.text
 					if uid+"|"+nama in id:pass
 					else:id.append(uid+"|"+nama)
-					#console.print(f" {H2}• {P2}sedang proses mengumpulkan id, berhasil mendapatkan {len(id)} id....", end="\r")
+					console.print(f" {H2}• {P2}sedang proses mengumpulkan id, berhasil mendapatkan {len(id)} id....", end="\r")
 					#console.print(f" {H2}• {P2}Total Id Dump :{H2} {len(id)} {P2} ", end="\r")
 			for x in url.find_all("a",href=True):
 				if "Lihat Teman Lain" in x.text:
