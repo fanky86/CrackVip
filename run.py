@@ -316,6 +316,11 @@ def menu():
     os.system("clear")
     banner()
     try:
+        open(".vipercok.txt","r").read()
+    except:
+        os.remove(".vipercok.txt")
+        logincoki()
+    try:
         cok = open(".vipercok.txt","r").read()
         cookie = {"cookie": cok}
         url = ses.get("https://mbasic.facebook.com/profile.php",cookies=cookie).text
@@ -325,17 +330,11 @@ def menu():
                 os.remove(".vipercok.txt")
             except:
                 pass
-            logincoki()
         else:
             return nama
         menu()
-    except KeyError:
-        pass
-    try:
-        open(".vipercok.txt","r").read()
     except:
-        try:os.remove(".vipercok.txt")
-        except:pass
+        os.remove(".vipercok.txt")
         logincoki()
     negara = requests.get("http://ip-api.com/json/").json()["country"]
     ip = requests.get("http://ip-api.com/json/").json()["query"]
