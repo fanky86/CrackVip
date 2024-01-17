@@ -273,8 +273,6 @@ class Login:
         else:
             exit(prints(Panel(f"""{M2}🙏 mohon maaf fitur ini sedang dalam tahap perbaikan""",width=87,style=f"{color_panel}")))
     def login_cookie(self,cookie):
-        prints(Panel(f"""{P2}silahkan masukan cookiemu disini dan pastikan autentikasi tidak aktif""",width=87,style=f"{color_panel}"))
-        cookie = console.input(f" {H2}• {P2}masukan cookie : ")
         try:
             url = ses.get("https://mbasic.facebook.com/",cookies={"cookie": cookie}).text
             if "Apa yang Anda pikirkan sekarang" in url:
@@ -330,7 +328,6 @@ def cek_login(cookie):
 ###----------[ MENU UTAMA ]---------- ###
 def menu():
     os.system("clear")
-    banner()
     try:
         cok = open("data/cookie","r").read()
         cookie = {"cookie": cok}
