@@ -391,7 +391,7 @@ class Dump:
 					if uid+"|"+nama in id:pass
 					else:id.append(uid+"|"+nama)
 					#console.print(f" {H2}• {P2}sedang proses mengumpulkan id, berhasil mendapatkan {len(id)} id....", end="\r")
-					console.print(f" {H2}• {P2}Total Id Dump :{H2} %s {P2} " % (len(id)))
+					#console.print(f" {H2}• {P2}Total Id Dump :{H2} {len(id)} {P2} ", end="\r")
 			for x in url.find_all("a",href=True):
 				if "Lihat Teman Lain" in x.text:
 					self.Dump_Publik("https://mbasic.facebook.com/"+x.get("href"))
@@ -460,6 +460,7 @@ def cektahun(fx):
 
 # -------------[ PENGATURAN-IDZ ]---------------#
 def setting():
+    console.print(f" {H2}• {P2}Total Id Dump :{H2} {len(id)} {P2} ")
     Console().print(Panel(f"[bold white]Apakah Anda Ingin Mengunakan UA Manual ? Y/T",title=f"[bold green]Setting User-Agent",width=60,style=f"{color_panel}"))
     uatambah = console.input(f" {H2}• {P2}Masukan : ")
     if uatambah in ["y", "Ya", "ya", "Y"]:
