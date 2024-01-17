@@ -72,21 +72,10 @@ pretty.install()
 CON = sol()
 wa = Console()
 prem = []
-ugen2 = []
-ugen = []
-temanku = []
-free = []
-uabb=[]
 dia = []
 console = Console()
 ses = requests.Session()
 ###----------[ GLOBAL NAMA ]---------- ###
-sekarang = calendar.timegm(time.gmtime(time.time()))
-tampung = []
-ugent = []
-ugen = []
-hakix = []
-ngentott = []
 id, id2, loop, ok, cp, akun, tokenku, uid, method, pwpluss, pwnya, tokenmu = (
     [],
     [],
@@ -150,7 +139,7 @@ for xd in range(10000):
     asep = f"Mozilla/5.0 (iPhone; CPU iPhone OS 12_1_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16D57 [FBAN/FBIOS;FBAV/209.0.0.33.90;FBBV/142900020;FBDV/iPhone10,3;FBMD/iPhone;FBSN/iOS;FBSV/12.1.4;FBSS/3;FBCR/U.S. Cellular;FBID/phone;FBLC/en_US;FBOP/5;FBRV/143925426]"
     uateddy = random.choice([strvredmi, strvsamsung, strvgt])
     prem.append(uateddy)
-    
+
 def uaku():
     try:
         ua = open("bbnew.txt", "r").read().splitlines()
@@ -233,20 +222,6 @@ bln = dic[(str(datetime.now().month))]
 thn = datetime.now().year
 okc = 'OK-'+str(tgl)+'-'+str(bln)+'-'+str(thn)+'.txt'
 cpc = 'CP-'+str(tgl)+'-'+str(bln)+'-'+str(thn)+'.txt'
-# --------------------[ WAKTU ]--------------#
-# --> Pengkondisian Jam Untuk Salam Harian
-def waktucok():
-    now = datetime.now()
-    hours = now.hour
-    if 4 <= hours < 12:
-        timenow = "Selamat Pagi"
-    elif 12 <= hours < 15:
-        timenow = "Selamat Siang"
-    elif 15 <= hours < 18:
-        timenow = "Selamat Sore"
-    else:
-        timenow = "Selamat Malam"
-    return timenow
 # --------------------[ BANNER ]--------------#
 def banner():
     Console().print(
