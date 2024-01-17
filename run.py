@@ -390,7 +390,8 @@ class Dump:
 					else:uid = "".join(bs4.re.findall("/(.*?)\?",z.get("href")));nama = z.text
 					if uid+"|"+nama in id:pass
 					else:id.append(uid+"|"+nama)
-					console.print(f" {H2}• {P2}Berhasil mengumpulkan %s ID"%(id))
+					#console.print(f" {H2}• {P2}sedang proses mengumpulkan id, berhasil mendapatkan {len(id)} id....", end="\r")
+					console.print(f" {H2}• {P2}Total Id Dump :{H2} %s {P2} " % (len(id)))
 			for x in url.find_all("a",href=True):
 				if "Lihat Teman Lain" in x.text:
 					self.Dump_Publik("https://mbasic.facebook.com/"+x.get("href"))
