@@ -271,9 +271,11 @@ def login123():
 ###----------[ CEK INFO LOGIN ]---------- ###
 def login():
     try:
-        cookie = open(".vipercok.txt","r").read()
+        cookiess = []
+        cook = open(".vipercok.txt","r").read()
+        cookiess.append(cook)
         try:
-            url = ses.get("https://mbasic.facebook.com/profile.php",cookies=cookie).text
+            url = ses.get("https://mbasic.facebook.com/profile.php",cookies=cookiess).text
             nama = re.findall("<title>(.*?)</title>",url)[0]
             if "Konten Tidak Ditemukan" in nama:
                 try:os.remove(".vipercok.txt")
@@ -291,15 +293,17 @@ def login():
         login123()
 
 def logincoki():
-    cookie = console.input(f" {H2}• {P2}masukan cookie : ")
+    coooki = []
+    cook = console.input(f" {H2}• {P2}masukan cookie : ")
+    coooki.append(cook)
     try:
-        url = ses.get("https://mbasic.facebook.com/",cookies={"cookie": cookie}).text
+        url = ses.get("https://mbasic.facebook.com/",cookies={"cookie": coooki}).text
         if "Apa yang Anda pikirkan sekarang" in url:
             pass
         else:
             for z in url.find_all("a",href=True):
                 if "Tidak, Terima Kasih" in z.text:
-                    get = ses.get("https://mbasic.facebook.com"+z["href"],cookies=cookie)
+                    get = ses.get("https://mbasic.facebook.com"+z["href"],cookies=coooki)
                     parsing = parser(get.text,"html.parser")
                     action = parsing.find("form",{"method":"post"})["action"]
                     data = {
@@ -307,9 +311,9 @@ def logincoki():
                         "jazoest":re.search('name="jazoest" value="(.*?)"', str(get.text)).group(1),
                         "submit": "OK, Gunakan Data"
                         }
-                    post = ses.post("https://mbasic.facebook.com"+action,data=data,cookies=cookie)
+                    post = ses.post("https://mbasic.facebook.com"+action,data=data,cookies=coooki)
                     break
-        open(".vipercok.txt","w").write(cookie)
+        open(".vipercok.txt","w").write(coooki)
         login()
     except:
         prints(Panel(f"""{M2}cookie invalid, silahkan gunakan cookie lain yang masih baru atau fresh""",width=60,style=f"{color_panel}"))
