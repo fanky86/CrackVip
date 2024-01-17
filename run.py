@@ -217,11 +217,27 @@ asu = random.choice([m, k, h, u, b])
 # --------------------[ CONVERTER-BULAN ]--------------#
 dic = {'1':'January','2':'February','3':'March','4':'April','5':'May','6':'June','7':'July','8':'August','9':'September','10':'October','11':'November','12':'December'}
 dic2 = {'01':'January','02':'February','03':'March','04':'April','05':'May','06':'June','07':'July','08':'August','09':'September','10':'October','11':'November','12':'Devember'}
-tgl = datetime.now().day
-bln = dic[(str(datetime.now().month))]
-thn = datetime.now().year
-okc = 'OK-'+str(tgl)+'-'+str(bln)+'-'+str(thn)+'.txt'
-cpc = 'CP-'+str(tgl)+'-'+str(bln)+'-'+str(thn)+'.txt'
+tgl = datetime.datetime.now().day
+bln = dic[(str(datetime.datetime.now().month))]
+thn = datetime.datetime.now().year
+okc = "OK-" + str(tgl) + "-" + str(bln) + "-" + str(thn) + ".txt"
+cpc = "CP-" + str(tgl) + "-" + str(bln) + "-" + str(thn) + ".txt"
+hour = datetime.datetime.now().hour
+hari_ini = datetime.datetime.now().strftime("%d-%B-%Y")
+# --------------------[ WAKTU ]--------------#
+# --> Pengkondisian Jam Untuk Salam Harian
+def waktucok():
+    now = datetime.now()
+    hours = now.hour
+    if 4 <= hours < 12:
+        timenow = "Selamat Pagi"
+    elif 12 <= hours < 15:
+        timenow = "Selamat Siang"
+    elif 15 <= hours < 18:
+        timenow = "Selamat Sore"
+    else:
+        timenow = "Selamat Malam"
+    return timenow
 # --------------------[ BANNER ]--------------#
 def banner():
     Console().print(
@@ -469,7 +485,7 @@ def passwrd():
         )
     )
     wa.print(Columns(urut))
-    awal = datetime.now()
+    awal = datetime.datetime.now()
     Console().print(
         Panel(
             f"[bold white]hidup/matikan Mode Pesawat Setiap [bold green]300[bold yellow] ID ",
