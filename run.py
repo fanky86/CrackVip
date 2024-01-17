@@ -268,31 +268,8 @@ def login123():
     else:
         Console().print(f" {H2}• {P2}[bold red]Pilihan Tidak Diketahui!", end="\r")
         time.sleep(5)
-        login()
+        logincoki()
 ###----------[ CEK INFO LOGIN ]---------- ###
-def login():
-    try:
-        cookiess = []
-        cook = open(".vipercok.txt","r").read()
-        cookiess.append(cook)
-        try:
-            url = ses.get("https://mbasic.facebook.com/profile.php",cookies=cookiess).text
-            nama = re.findall("<title>(.*?)</title>",url)[0]
-            if "Konten Tidak Ditemukan" in nama:
-                try:os.remove(".vipercok.txt")
-                except:pass
-                login()
-            else:
-                return nama
-            menu()
-        except KeyError:
-            login123()
-        except ConnectionError:
-            Console().print(f"{H2}• {P2}koneksi internet kamu bermasalah, silahkan cek koneksi kamu kembali",width=60,style=f"{color_panel}")
-            exit()
-    except IOError:
-        login123()
-
 def logincoki():
     cookie = console.input(f" {H2}• {P2}masukan cookie : ")
     try:
@@ -341,11 +318,25 @@ def menu():
     try:
         cok = open(".vipercok.txt","r").read()
         cookie = {"cookie": cok}
-        nama = login()
+        url = ses.get("https://mbasic.facebook.com/profile.php",cookies=cookie).text
+        nama = re.findall("<title>(.*?)</title>",url)[0]
+        if "Konten Tidak Ditemukan" in nama:
+            try:
+                os.remove(".vipercok.txt")
+            except:
+                pass
+            logincoki()
+        else:
+            return nama
+        menu()
+    except KeyError:
+        pass
+    try:
+        open(".vipercok.txt","r").read()
     except:
         try:os.remove(".vipercok.txt")
         except:pass
-        login()
+        logincoki()
     negara = requests.get("http://ip-api.com/json/").json()["country"]
     ip = requests.get("http://ip-api.com/json/").json()["query"]
     dia.append(panel(f"{P2}Name   : {H2}{nama}\n{P2}IP     : {H2}{ip}",title=f"{P2}Bio Data",width=60,style=f"{color_panel}"))
