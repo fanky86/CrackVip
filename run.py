@@ -318,7 +318,7 @@ def menu():
     try:
         open(".vipercok.txt","r").read()
     except:
-        os.system("rm -rf.vipercok.txt")
+        os.system("rm -rf .vipercok.txt")
         logincoki()
     try:
         cok = open(".vipercok.txt","r").read()
@@ -327,13 +327,13 @@ def menu():
         nama = re.findall("<title>(.*?)</title>",url)[0]
         if "Konten Tidak Ditemukan" in nama:
             try:
-                os.system("rm -rf.vipercok.txt")
+                os.system("rm -rf .vipercok.txt")
             except:
                 pass
         else:
             return nama
     except:
-        os.system("rm -rf.vipercok.txt")
+        os.system("rm -rf .vipercok.txt")
         logincoki()
     negara = requests.get("http://ip-api.com/json/").json()["country"]
     ip = requests.get("http://ip-api.com/json/").json()["query"]
