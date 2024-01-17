@@ -316,20 +316,14 @@ def menu():
     os.system("clear")
     banner()
     try:
-        open(".vipercok.txt","r").read()
-    except:
-        os.system("rm -rf .vipercok.txt")
-        logincoki()
-    try:
         cok = open(".vipercok.txt","r").read()
         cookie = {"cookie": cok}
         url = ses.get("https://mbasic.facebook.com/profile.php",cookies=cookie).text
         nama = re.findall("<title>(.*?)</title>",url)[0]
         if "Konten Tidak Ditemukan" in nama:
-            try:
-                os.system("rm -rf .vipercok.txt")
-            except:
-                pass
+            try:os.system("rm -rf .vipercok.txt")
+            except:pass
+            login123()
         else:
             return nama
     except:
