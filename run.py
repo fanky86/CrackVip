@@ -16,15 +16,10 @@ from rich.console import Console
 
 console = Console()
 try:
-    import licensing
-except ImportError:
-    console.print(f" {H2}• {U2}Sedang Menginstall Modul licensing{H2} •{P2}")
-    os.system("pip install licensing")
-try:
-    import rich
+    import requests
 except ImportError:
     console.print(f" {H2}• {U2}Sedang Menginstall Modul Rich {H2}•{P2}")
-    os.system("pip install rich")
+    os.system("pip install requests")
 try:
     import stdiomask
 except ImportError:
